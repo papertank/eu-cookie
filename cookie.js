@@ -78,6 +78,7 @@
         	{
 	        	$.cookie("pt-euc_"+options.default_action, "pt-euc_"+options.default_action, {
 	                expires: options.cookie_expires,
+	                domain: options.cookie_domain,
 	                path: '/'
 	            });
 	        }
@@ -229,6 +230,7 @@
         		
 				$.cookie("pt-euc_"+options.default_action, "pt-euc_"+options.default_action, {
 	                expires: options.cookie_expires,
+	                domain: options.cookie_domain,
 	                path: '/'
 	            });
 	                 	
