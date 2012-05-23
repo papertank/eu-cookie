@@ -13,7 +13,7 @@ Include the cookie.js script *after* the jQuery library (unless you are packagin
 Once you have referenced the cookie plugin above, you can call it using jQuery. You should do this *before* you call your cookie dependant javascript.
 
     $(function() {
-  		$.pt_cookie({ info_link: 'http://stage.papertank.co.uk/cookies' });
+  		$.pt_cookie();
   	});
   	
 If you have javascript plugins that require cookies to operate - eg. analytics or facebook, etc - you should wrap them as follows (remember to use jQuery document ready to make sure cookie plugin is loaded):
