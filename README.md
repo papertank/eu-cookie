@@ -15,8 +15,18 @@ Once you have referenced the cookie plugin above, you can call it using jQuery. 
     $(function() {
   		$.pt_cookie({ info_link: 'http://stage.papertank.co.uk/cookies' });
   	});
+  	
+If you have javascript plugins that require cookies to operate - eg. analytics or facebook, etc - you should wrap them as follows (remember to use jQuery document ready to make sure cookie plugin is loaded):
 
-If you have parts of your website that require cookies to operate, give them the class `requires_cookies`. E.g Facebook buttons, etc.
+	$(function() {	
+		if ($.cookie_accepted()) {
+		
+			`analytics, etc code here…`
+			
+		}
+	});
+
+If you have parts of your website's markup that require cookies to operate, give them the class `requires_cookies`. E.g Facebook buttons, etc.
 
 	<div class="social requires_cookies">
             		
