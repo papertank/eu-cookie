@@ -67,6 +67,25 @@
                 
         var wrapper_style = '';
         
+        /* Added check incase we got our knickers in a twist and _both_ cookies are set */
+        if ( ( $.cookie("pt-euc_accept") == 'pt-euc_accept' ) && ( $.cookie("pt-euc_decline") == 'pt-euc_decline' ) )
+        {
+	        
+	        $.cookie("pt-euc_accept", null, {
+                path: '/',
+                domain: options.cookie_domain
+            });
+            
+            $.cookie("pt-euc_decline", null, {
+                path: '/',
+                domain: options.cookie_domain
+            });
+            
+            location.reload();
+	        
+        }
+        
+        
         if ( ( $.cookie("pt-euc_accept") == null ) && ( $.cookie("pt-euc_decline") == null ) )
         {
         	/* The user hasn't chosen to accept or decline yet */
