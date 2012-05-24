@@ -77,8 +77,6 @@ Defines what the default action should be - automatically deny cookies, or autom
 
 If true, the cookie tooltip window will always show (from the first time the user visits), until they choose to either accept or reject cookies.
 
-## Changelog
-
 ## Development
 
 - Source hosted at [GitHub](https://github.com/papertank/eu-cookie)
@@ -86,3 +84,9 @@ If true, the cookie tooltip window will always show (from the first time the use
 ## Authors
 
 [Papertank](https://github.com/papertank)
+
+## Credits
+
+Cookie Icon - http://www.iconfinder.com/icondetails/45928/16/bite_cookie_icon
+Toggle Graphic - http://www.premiumpixels.com/freebies/onoff-switches-and-toggles-psd/
+
