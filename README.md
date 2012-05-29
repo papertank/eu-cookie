@@ -1,4 +1,4 @@
-# Papertank Cookie
+# Papertank Cookie v0.2
 
 A simple jQuery plugin for compliance with the new EU cookie legislation. Decided to design / code up a toggle 'On / Off' tooltip box, encouraging the user to accept cookies (rather than the boring 'I Accept Cookies' button).
 
@@ -10,21 +10,17 @@ Include the cookie.js script *after* the jQuery library (unless you are packagin
 
 ## Usage
 
-Once you have referenced the cookie plugin above, you can call it using jQuery. You should do this *before* you call your cookie dependant javascript.
+Once you have referenced the cookie plugin above, you can call it using jQuery. You should do this *before* you call your cookie dependant javascript. *Update: Do not wrap the jquery plugin call in document ready wrapper.*
 
-    $(function() {
-  		$.pt_cookie();
-  	});
+  	$.pt_cookie();
   	
-If you have javascript plugins that require cookies to operate - eg. analytics or facebook, etc - you should wrap them as follows (remember to use jQuery document ready to make sure cookie plugin is loaded):
-
-	$(function() {	
-		if ($.cookie_accepted()) {
+If you have javascript plugins that require cookies to operate - eg. analytics or facebook, etc - you should wrap them as follows (remember to use jQuery document ready to make sure cookie plugin is loaded): *Updated: Do not wrap analytics call code in jquery document ready wrapper.*
+	
+	if ($.cookie_accepted()) {
+	
+		`analytics, etc code here…`
 		
-			`analytics, etc code here…`
-			
-		}
-	});
+	}
 
 If you have parts of your website's markup that require cookies to operate, give them the class `requires_cookies`. E.g Facebook buttons, etc.
 
@@ -44,19 +40,17 @@ Additionally, any clickable elements which you give the class `pt-euc_enable_coo
 
 Options are passed to the plugin call as follows (defaults below).
 
-	$(function() {
-  		$.pt_cookie({
-  			info_link: "http://www.allaboutcookies.org/",
-            message: "We need your consent to store cookies on your computer. These improve your experience and help us remember you.",
-            info_label: "Learn More",
-            close_label: "Close",
-            css_path: '/',
-            cookie_domain: '',
-            cookie_expires: 365,
-            default_action: 'accept',
-            always_show: false,
-            expires: 365
-  		});
+  	$.pt_cookie({
+		info_link: "http://www.allaboutcookies.org/",
+        message: "We need your consent to store cookies on your computer. These improve your experience and help us remember you.",
+        info_label: "Learn More",
+        close_label: "Close",
+        css_path: '/',
+        cookie_domain: '',
+        cookie_expires: 365,
+        default_action: 'accept',
+        always_show: false,
+        expires: 365
   	});
 
 Specifics…
@@ -81,6 +75,10 @@ If true, the cookie tooltip window will always show (from the first time the use
 
 - Source hosted at [GitHub](https://github.com/papertank/eu-cookie)
 
+## Changelog
+
+v0.2 (29/05/2012) - Updated js plugin with document ready wrapper around dom manipulation code. Updated readme to suggest that plugin instantiation call and IF statement (before analytics, etc code) is not wrapped in jquery document ready wrapper (was messing up Google Analytics in particular!).
+
 ## Authors
 
 [Papertank](https://github.com/papertank)
@@ -88,5 +86,6 @@ If true, the cookie tooltip window will always show (from the first time the use
 ## Credits
 
 Cookie Icon - http://www.iconfinder.com/icondetails/45928/16/bite_cookie_icon
+
 Toggle Graphic - http://www.premiumpixels.com/freebies/onoff-switches-and-toggles-psd/
 

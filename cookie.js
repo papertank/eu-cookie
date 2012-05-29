@@ -46,7 +46,10 @@
     };
 })(jQuery);
 
-/* Papertank Cookie Plugin v0.1 */
+/*!
+ * Papertank Cookie Plugin v0.2 
+ * https://github.com/papertank/eu-cookie
+ */
 (function ($) {
     
     $.pt_cookie = function (options) {
@@ -148,118 +151,122 @@
             });
             return true;
         }
+        
+        $(function() {	
 
-            $('body').append('\
+	            $('body').append('\
 \
-<div id="pt-euc_wrapper" '+wrapper_style+'> \
+	<div id="pt-euc_wrapper" '+wrapper_style+'> \
 \
-    <div id="pt-euc_box"> \
+	    <div id="pt-euc_box"> \
 \
-        <div id="pt-euc_message"> \
-            '+options.message+' \
-        </div> \
+	        <div id="pt-euc_message"> \
+	            '+options.message+' \
+	        </div> \
 \
-        <div id="pt-euc_footer"> \
-            <div id="pt-euc_links"> \
-                <a href="'+options.info_link+'" target="_blank">'+options.info_label+'</a> <a href="#" id="pt-euc_close">'+options.close_label+'</a> \
-            </div> \
+	        <div id="pt-euc_footer"> \
+	            <div id="pt-euc_links"> \
+	                <a href="'+options.info_link+'" target="_blank">'+options.info_label+'</a> <a href="#" id="pt-euc_close">'+options.close_label+'</a> \
+	            </div> \
 \
-            <a href="#" id="pt-euc_toggle" class="'+( $.cookie_accepted() ? 'on' : '')+'"> \
-               '+( $.cookie_accepted() ? 'Turn Off' : 'Turn On')+' \
-            </a> \
+	            <a href="#" id="pt-euc_toggle" class="'+( $.cookie_accepted() ? 'on' : '')+'"> \
+	               '+( $.cookie_accepted() ? 'Turn Off' : 'Turn On')+' \
+	            </a> \
 \
-            <div class="pt-euc_clear"></div> \
+	            <div class="pt-euc_clear"></div> \
 \
-        </div> \
+	        </div> \
 \
-    </div> \
+	    </div> \
 \
-    <i id="pt-euc_arrow" style="left: 100%; margin-left: -31px; "></i> \
+	    <i id="pt-euc_arrow" style="left: 100%; margin-left: -31px; "></i> \
 \
-</div> \
+	</div> \
 \
-<div id="pt-euc_sticky"> \
-    <a id="pt-euc_cookie"> \
-        <i> </i> \
-    </a> \
-</div> \
-');
-		
-		if ( $.cookie_accepted() )
-		{
-			/* Let's get rid of the unnecessary classes across the page (incase styles were applied to them) */
-		
-			$('.requires_cookies').each(function(i) {
-				$(this).removeClass('.requires_cookies');
-			});
-		}
-		else
-		{
-			/* Let's replace the content in the .requires_cookie elements with a message */
-		
-			$('.requires_cookies').each(function(i) {
-				$(this).html('Sorry, you need to <a href="#" class="pt-euc_enable_cookies">Enable Cookies</a> for this part of the website. <small>&nbsp; <a href="'+options.info_link+'" target="_blank">'+options.info_label+'</a></small>');
-			});
-		}
-
-		
-		$('.pt-euc_enable_cookies').click(function(e){
-			e.preventDefault();
-			$.accept_cookies();
+	<div id="pt-euc_sticky"> \
+	    <a id="pt-euc_cookie"> \
+	        <i> </i> \
+	    </a> \
+	</div> \
+	');
 			
-			/* We have to reload the page, to allow us to initalise again */
-			location.reload();
-		});
-		
-
-        $('#pt-euc_toggle').click(function(e){
-            e.preventDefault();
-            toggle = $(this);
-            
-            if ( toggle.hasClass('on') ) {
-                
-                toggle.removeClass('on');
-                $.decline_cookies();
-                
-            } else {
-                toggle.addClass('on');
-               	$.accept_cookies();
-            }
-            $("#pt-euc_wrapper").fadeOut(1000, function () {
-
-                /* We have to reload the page, to allow us to initalise again */
-                location.reload();
-            });
-
-        }); 
-        
-        $('#pt-euc_cookie').click(function(e){
-         e.preventDefault();
-         
-	         $('#pt-euc_wrapper').fadeToggle();
-         
-        }); 
-        
-        $('#pt-euc_close').click(function(e){
-        	
-        	e.preventDefault();
-        	
-        	if ( ( $.cookie("pt-euc_accept") == null ) && ( $.cookie("pt-euc_decline") == null ) )
-        	{
-        		
-				$.cookie("pt-euc_"+options.default_action, "pt-euc_"+options.default_action, {
-	                expires: options.cookie_expires,
-	                domain: options.cookie_domain,
-	                path: '/'
+			if ( $.cookie_accepted() )
+			{
+				/* Let's get rid of the unnecessary classes across the page (incase styles were applied to them) */
+			
+				$('.requires_cookies').each(function(i) {
+					$(this).removeClass('.requires_cookies');
+				});
+			}
+			else
+			{
+				/* Let's replace the content in the .requires_cookie elements with a message */
+			
+				$('.requires_cookies').each(function(i) {
+					$(this).html('Sorry, you need to <a href="#" class="pt-euc_enable_cookies">Enable Cookies</a> for this part of the website. <small>&nbsp; <a href="'+options.info_link+'" target="_blank">'+options.info_label+'</a></small>');
+				});
+			}
+	
+			
+			$('.pt-euc_enable_cookies').click(function(e){
+				e.preventDefault();
+				$.accept_cookies();
+				
+				/* We have to reload the page, to allow us to initalise again */
+				location.reload();
+			});
+			
+	
+	        $('#pt-euc_toggle').click(function(e){
+	            e.preventDefault();
+	            toggle = $(this);
+	            
+	            if ( toggle.hasClass('on') ) {
+	                
+	                toggle.removeClass('on');
+	                $.decline_cookies();
+	                
+	            } else {
+	                toggle.addClass('on');
+	               	$.accept_cookies();
+	            }
+	            $("#pt-euc_wrapper").fadeOut(1000, function () {
+	
+	                /* We have to reload the page, to allow us to initalise again */
+	                location.reload();
 	            });
-	                 	
-        	}
-        	
-        	$('#pt-euc_wrapper').fadeOut();
-        	
-        });      
+	
+	        }); 
+	        
+	        $('#pt-euc_cookie').click(function(e){
+	         e.preventDefault();
+	         
+		         $('#pt-euc_wrapper').fadeToggle();
+	         
+	        }); 
+	        
+	        $('#pt-euc_close').click(function(e){
+	        	
+	        	e.preventDefault();
+	        	
+	        	if ( ( $.cookie("pt-euc_accept") == null ) && ( $.cookie("pt-euc_decline") == null ) )
+	        	{
+	        		
+					$.cookie("pt-euc_"+options.default_action, "pt-euc_"+options.default_action, {
+		                expires: options.cookie_expires,
+		                domain: options.cookie_domain,
+		                path: '/'
+		            });
+		                 	
+	        	}
+	        	
+	        	$('#pt-euc_wrapper').fadeOut();
+	        	
+	        });      
+	        
+	        $('<link rel="stylesheet" href="'+options.css_path+'cookie.css" />').appendTo("head");    
         
-        $('<link rel="stylesheet" href="'+options.css_path+'cookie.css" />').appendTo("head");    
+        });
 
     };
 
